@@ -150,6 +150,13 @@ button.secondary {
   color: #64748b;
 }
 
+.credits {
+  margin-top: 12px;
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background: #0f172a;
