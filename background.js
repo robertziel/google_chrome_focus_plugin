@@ -28,8 +28,19 @@ const matchesSubdomain = (hostname, subdomain) => {
 };
 
 const isAllowedUrl = (url, allowlist) => {
-  const entry = allowlist.find((item) => item.url === url);
-  return Boolean(entry);
+  if (!url) return false;
+  let hostname = "";
+  try {
+    hostname = new URL(url).hostname.toLowerCase();
+  } catch (error) {
+    return false;
+  }
+
+  return allowlist.some((item) => {
+    if (item.url && item.url === url) return true;
+    if (item.subdomain) return matchesSubdomain(hostname, item.subdomain);
+    return false;
+  });
 };
 
 const isBlockedUrl = (url, blocklist) => {
@@ -72,13 +83,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message || !message.type) return;
 
   if (message.type === "grantTempAccess") {
+    let hostname = "";
+    try {
+      hostname = new URL(message.url).hostname.toLowerCase();
+    } catch (error) {
+      sendResponse({ ok: false });
+      return false;
+    }
+
     const entry = {
-      url: message.url,
+      subdomain: hostname,
       type: "temp",
       expiresAt: Date.now() + TEMP_ACCESS_MS
     };
     getState().then(({ allowlist }) => {
-      const updated = allowlist.filter((item) => item.url !== entry.url);
+      const updated = allowlist.filter((item) => item.subdomain !== entry.subdomain);
       updated.push(entry);
       setState({ [ALLOWLIST_KEY]: updated }).then(() => sendResponse({ ok: true }));
     });
