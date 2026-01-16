@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus Guard</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Focus Guard</h1>
+      <p>Manage blocked subdomains and categories.</p>
+    </header>
+
+    <section class="card">
+      <h2>Add or edit a rule</h2>
+      <form id="rule-form">
+        <label>
+          Subdomain
+          <input type="text" id="subdomain" placeholder="forum.reddit.com" required />
+        </label>
+        <label>
+          Category
+          <input type="text" id="category" placeholder="Social" />
+        </label>
+        <input type="hidden" id="rule-id" />
+        <div class="actions">
+          <button type="submit" id="save-button">Save rule</button>
+          <button type="button" id="cancel-button" class="secondary">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2>Blocked list</h2>
+        <span id="rule-count"></span>
+      </div>
+      <div id="rule-list" class="rule-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Import / export</h2>
+      <div class="import-export">
+        <button id="export-button">Export JSON</button>
+        <label class="file-label">
+          Import JSON
+          <input type="file" id="import-file" accept="application/json" />
+        </label>
+      </div>
+      <p class="hint">Share or back up your subdomain rules.</p>
+    </section>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
