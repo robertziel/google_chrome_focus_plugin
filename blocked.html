@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stay Focused</title>
+    <link rel="stylesheet" href="blocked.css" />
+  </head>
+  <body>
+    <main class="panel">
+      <h1>Take a mindful pause</h1>
+      <p id="blocked-url" class="url"></p>
+      <section class="task">
+        <h2>Quick challenge</h2>
+        <p id="task-question"></p>
+        <div class="task-inputs">
+          <input type="number" id="task-answer" placeholder="Answer" />
+          <button id="task-submit">Unlock for 1 minute</button>
+        </div>
+        <p id="task-feedback" class="feedback"></p>
+      </section>
+
+      <section class="task">
+        <h2>Bypass keyword</h2>
+        <p>Type <strong>resourceful</strong> to unlock just this exact path.</p>
+        <div class="task-inputs">
+          <input type="text" id="bypass-input" placeholder="Enter keyword" />
+          <button id="bypass-submit" class="secondary">Unlock path</button>
+        </div>
+        <p id="bypass-feedback" class="feedback"></p>
+      </section>
+
+      <footer>
+        <p>Need to adjust your blocklist? Open the Focus Guard toolbar panel.</p>
+      </footer>
+    </main>
+    <script src="blocked.js"></script>
+  </body>
+</html>
