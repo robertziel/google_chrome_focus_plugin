@@ -68,7 +68,7 @@ const unlock = async (type) => {
 submitButton.addEventListener("click", async () => {
   const response = Number(answerInput.value);
   if (response === task.answer) {
-    feedback.textContent = "Correct! You have 1 minute.";
+    feedback.textContent = "Correct! You have 1 minute for this domain.";
     await unlock("grantTempAccess");
   } else {
     feedback.textContent = "Not quite. Try again.";
